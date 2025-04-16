@@ -18,7 +18,9 @@ find_package(pcl_conversions REQUIRED)
 find_package(pcl_ros REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(tf2_ros REQUIRED)
+find_package(tf2_eigen REQUIRED)
 find_package(geometry_msgs REQUIRED)
+find_package(nav_msgs REQUIRED)
 find_package(unitree_go REQUIRED)
 find_package(PCL REQUIRED COMPONENTS common io)
 
@@ -30,22 +32,27 @@ set(DEPENDENCY_LIST
   pcl_ros
   std_msgs
   tf2_ros
+  tf2_eigen
   geometry_msgs
+  nav_msgs
   unitree_go
+  PCL
 )
 
 # Executables
 add_executable(lidar_fixer src/lidar_fixer.cpp)
-add_executable(orientation src/orientation_tf2.cpp)
+add_executable(tf_odom src/tf_odom.cpp)
 
+# Lier avec les bibliothèques PCL
 target_link_libraries(lidar_fixer ${PCL_LIBRARIES})
 
+# Ajouter les dépendances ROS2 aux cibles
 ament_target_dependencies(lidar_fixer ${DEPENDENCY_LIST})
-ament_target_dependencies(orientation ${DEPENDENCY_LIST})
+ament_target_dependencies(tf_odom ${DEPENDENCY_LIST})
 
 # Install
 install(TARGETS lidar_fixer DESTINATION lib/${PROJECT_NAME})
-install(TARGETS orientation DESTINATION lib/${PROJECT_NAME})
+install(TARGETS tf_odom DESTINATION lib/${PROJECT_NAME})
 
 # Testing
 if(BUILD_TESTING)

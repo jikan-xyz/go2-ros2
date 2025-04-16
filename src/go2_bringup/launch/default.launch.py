@@ -54,11 +54,11 @@ def generate_launch_description():
             output='screen'
         ),
 
-        # === Localisation (orientation + lidar_fixer) ===
+        # === Localisation (tf_odom + lidar_fixer) ===
         Node(
             package='go2_localisation',
-            executable='orientation',
-            name='orientation',
+            executable='tf_odom',
+            name='tf_odom',
             output='screen'
         ),
 
