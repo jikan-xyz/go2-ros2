@@ -1,0 +1,24 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/go2zilla/go2_robot/install/go2_bringup/lib/python3.10/site-packages",
+        "/home/go2zilla/go2_robot/install/yolo_ai/lib/python3.10/site-packages",
+        "/home/go2zilla/go2_robot/install/unitree_go/local/lib/python3.10/dist-packages",
+        "/home/go2zilla/go2_robot/install/unitree_api/local/lib/python3.10/dist-packages",
+        "/home/go2zilla/go2_robot/src/cyclonedds_ws/install/unitree_hg/local/lib/python3.10/dist-packages",
+        "/home/go2zilla/go2_robot/src/cyclonedds_ws/install/unitree_go/local/lib/python3.10/dist-packages",
+        "/home/go2zilla/go2_robot/src/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/go2zilla/go2_robot/install/go2_bringup/lib/python3.10/site-packages",
+        "/home/go2zilla/go2_robot/install/yolo_ai/lib/python3.10/site-packages",
+        "/home/go2zilla/go2_robot/install/unitree_go/local/lib/python3.10/dist-packages",
+        "/home/go2zilla/go2_robot/install/unitree_api/local/lib/python3.10/dist-packages",
+        "/home/go2zilla/go2_robot/src/cyclonedds_ws/install/unitree_hg/local/lib/python3.10/dist-packages",
+        "/home/go2zilla/go2_robot/src/cyclonedds_ws/install/unitree_go/local/lib/python3.10/dist-packages",
+        "/home/go2zilla/go2_robot/src/cyclonedds_ws/install/unitree_api/local/lib/python3.10/dist-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ]
+}

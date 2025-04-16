@@ -46,7 +46,7 @@ private:
         if (msg->buttons[4] == 1)  // LB
         {
             // Contrôles de l'orientation du robot
-            last_roll_ = map_range(right_stick_x, -1.0f, 1.0f, -0.75f, 0.75f);  // Contrôle du roll (axe droit X)
+            last_roll_ = map_range(right_stick_x, -1.0f, 1.0f, 0.75f, -0.75f);  // Contrôle du roll (axe droit X)
             last_pitch_ = mapped_right_y;  // Contrôle du pitch (axe droit Y)
             last_yaw_ = map_range(left_stick_x, -1.0f, 1.0f, -0.6f, 0.6f);  // Contrôle du yaw (axe gauche X)
             last_vx_ = last_vy_ = last_vz_ = 0.0f;  // Pas de mouvement linéaire en mode orientation

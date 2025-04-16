@@ -9,10 +9,18 @@ setup(
     version='0.0.0',
     packages=find_packages(exclude=['test']),
     data_files=[
+        # Fichiers nécessaires à ROS2 pour retrouver ton package
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
+
+        # Fichier package.xml
         ('share/' + package_name, ['package.xml']),
+
+        # === Fichiers de launch ===
         (os.path.join('share', package_name, 'launch'), glob('launch/*.py')),
+
+        # === Fichiers RViz (.rviz) ===
+        (os.path.join('share', package_name, 'rviz'), glob('rviz/*.rviz')),
     ],
     install_requires=[
         'setuptools',

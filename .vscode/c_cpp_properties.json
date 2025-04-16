@@ -1,0 +1,30 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/go2zilla/go2_robot/install/go2_image_transport/include/**",
+        "/home/go2zilla/go2_robot/install/unitree_go/include/**",
+        "/home/go2zilla/go2_robot/install/unitree_api/include/**",
+        "/home/go2zilla/go2_robot/src/cyclonedds_ws/install/unitree_hg/include/**",
+        "/home/go2zilla/go2_robot/src/cyclonedds_ws/install/unitree_go/include/**",
+        "/home/go2zilla/go2_robot/src/cyclonedds_ws/install/unitree_api/include/**",
+        "/opt/ros/humble/include/**",
+        "/home/go2zilla/github_go2/src/go2_basics/include/**",
+        "/home/go2zilla/github_go2/src/go2_control/include/**",
+        "/home/go2zilla/github_go2/src/go2_image_transport/include/**",
+        "/home/go2zilla/github_go2/src/go2_localisation/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}
