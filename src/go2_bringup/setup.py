@@ -21,6 +21,7 @@ setup(
 
         # === Fichiers RViz (.rviz) ===
         (os.path.join('share', package_name, 'rviz'), glob('rviz/*.rviz')),
+
     ],
     install_requires=[
         'setuptools',
