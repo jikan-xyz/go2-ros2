@@ -54,16 +54,27 @@ def generate_launch_description():
             output='screen'
         ),
 
+        # === TF & URDF ===
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource([
+                os.path.join(
+                    get_package_share_directory('go2_description'),
+                    'launch',
+                    'display_robot.launch.py'
+                )
+            ])
+        ),
+
         # === Localisation (tf_odom + lidar_fixer) ===
         Node(
-            package='go2_localisation',
+            package='go2_description',
             executable='tf_odom',
             name='tf_odom',
             output='screen'
         ),
 
         Node(
-            package='go2_localisation',
+            package='go2_description',
             executable='lidar_fixer',
             name='lidar_fixer',
             output='screen'

@@ -5,14 +5,11 @@
 #include <pcl/point_types.h>
 #include <pcl/common/transforms.h>
 #include <Eigen/Dense>
-#include <cmath>
-#include <tf2_eigen/tf2_eigen.hpp>
 
 class LidarFixer : public rclcpp::Node {
 public:
     LidarFixer() 
-        : Node("go2_lidar_fixer"),
-          tf_buffer_(this->get_clock())
+        : Node("go2_lidar_fixer")
     {
         RCLCPP_INFO(this->get_logger(), "Initialisation du noeud LidarFixer...");
 
@@ -32,23 +29,20 @@ private:
         pcl::PointCloud<pcl::PointXYZI>::Ptr cloud(new pcl::PointCloud<pcl::PointXYZI>());
         pcl::fromROSMsg(*msg, *cloud);
 
-        // Rotation fixe sur l’axe Y (calibration LiDAR)
-        float correction_deg_y = 165.0f;
-        float correction_rad_y = correction_deg_y * M_PI / 180.0f;
+        // === Correction basée sur l'URDF ===
+        float correction_rad_y = 2.8782f;  // Rotation autour de Y (URDF)
 
         Eigen::Affine3f transform = Eigen::Affine3f::Identity();
         transform.rotate(Eigen::AngleAxisf(correction_rad_y, Eigen::Vector3f::UnitY()));
 
-        transform.translation() << 0.35f, 0.0f, 0.0f;
-
         pcl::PointCloud<pcl::PointXYZI>::Ptr transformed_cloud(new pcl::PointCloud<pcl::PointXYZI>());
         pcl::transformPointCloud(*cloud, *transformed_cloud, transform);
 
-        // Filtrage basique du nuage
-        float offset_x = -0.1;
-        float min_x = -0.3 + offset_x, max_x = 0.4 + offset_x;
-        float min_y = -0.2, max_y = 0.2;
-        float min_z = -0.3, max_z = 0.1;  // Hauteur fixe (optionnel)
+        // === Filtrage basique pour virer les pattes ===
+        float offset_x = -0.3;
+        float min_x = -0.3f + offset_x, max_x = 0.5f + offset_x;
+        float min_y = -0.2f, max_y = 0.2f;
+        float min_z = -0.3f, max_z = 0.05f;
 
         pcl::PointCloud<pcl::PointXYZI>::Ptr filtered_cloud(new pcl::PointCloud<pcl::PointXYZI>());
         for (const auto& point : transformed_cloud->points) {
@@ -59,10 +53,11 @@ private:
             }
         }
 
+        // === Conversion ROS + publication ===
         sensor_msgs::msg::PointCloud2 output;
         pcl::toROSMsg(*filtered_cloud, output);
         output.header.stamp = this->now();
-        output.header.frame_id = "go2";
+        output.header.frame_id = "lidar";  // repère global du robot
 
         pub_->publish(output);
         RCLCPP_DEBUG(this->get_logger(), "Nuage publié : %zu points", filtered_cloud->points.size());
@@ -70,7 +65,6 @@ private:
 
     rclcpp::Subscription<sensor_msgs::msg::PointCloud2>::SharedPtr sub_cloud_;
     rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr pub_;
-    tf2_ros::Buffer tf_buffer_;
 };
 
 int main(int argc, char *argv[]) {

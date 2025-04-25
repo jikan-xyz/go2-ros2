@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>go2_localisation</name>
+  <name>go2_description</name>
   <version>0.0.0</version>
   <description>TODO: Package description</description>
   <maintainer email="80169167+jikan-xyz@users.noreply.github.com">go2zilla</maintainer>
@@ -16,6 +16,12 @@
   <depend>std_msgs</depend>
   <depend>tf2_ros</depend>
   <depend>tf2_eigen</depend>
+  <depend>geometry_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>unitree_go</depend>
+  <depend>PCL</depend>
+  <depend>robot_state_publisher</depend>
+  <depend>urdf</depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
