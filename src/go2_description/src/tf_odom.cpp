@@ -23,8 +23,8 @@ private:
     void imu_callback(const unitree_go::msg::SportModeState::SharedPtr msg)
     {
         // === Quaternion conversion from Go2 to ROS (Z up, X forward) ===
-        double qx = msg->imu_state.quaternion[2];   // ROS x ← Go2 z
-        double qy = -msg->imu_state.quaternion[1];  // ROS y ← -Go2 y
+        double qx = -msg->imu_state.quaternion[1];   // ROS x ← Go2 y
+        double qy = -msg->imu_state.quaternion[2];  // ROS y ← -Go2 z
         double qz = -msg->imu_state.quaternion[0];  // ROS z ← -Go2 x
         double qw = msg->imu_state.quaternion[3];   // w ok
 
